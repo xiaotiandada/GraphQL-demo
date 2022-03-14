@@ -3,27 +3,34 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
+import {
+	ApolloClient,
+	InMemoryCache,
+	ApolloProvider,
+} from '@apollo/client'
+const client = new ApolloClient({
+	uri: process.env.REACT_APP_API_GRAPHQL,
+	cache: new InMemoryCache()
+})
 
 import './i18n'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
 import { store } from './store/index'
+
 
 const persistor = persistStore(store)
 
 ReactDOM.render(
 	<StrictMode>
-		<FixedGlobalStyle />
-		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<ThemeProvider>
-					<ThemedGlobalStyle />
+		<ApolloProvider client={client}>
+			<Provider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
 					<App />
-				</ThemeProvider>
-			</PersistGate>
-		</Provider>
+				</PersistGate>
+			</Provider>
+		</ApolloProvider>
 	</StrictMode>,
 	document.getElementById('root')
 )

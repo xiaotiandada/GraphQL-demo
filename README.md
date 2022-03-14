@@ -1,3 +1,6 @@
+> Fork 项目来学习 GraphQL 的 Demo，用 React 去简单的 Query、Mutation。
+
+
 
 这是利用Koa + GraphQL + Apollo-Server实现的，学生信息增、删、改、查的栗子
 
@@ -39,3 +42,8 @@
 3、npm start
 
 ````
+
+
+## Client
+
+![](https://storageapi.fleek.co/andoroyur-team-bucket/metanetwork/users/metaio-storage/image.png)
